@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logicrate | Professional SCM Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+            overflow-x: hidden; /* Prevent horizontal scrollbar from animation */
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1920x1080/1a1a1a/333333?text=Global+Logistics');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .accent-gold {
+            color: #d4af37;
+        }
+        .bg-accent-gold {
+            background-color: #d4af37;
+        }
+        .border-accent-gold {
+            border-color: #d4af37;
+        }
+        .section-title {
+            @apply text-3xl md:text-4xl font-bold text-center mb-2;
+        }
+        .section-subtitle {
+            @apply text-center text-neutral-400 mb-12 max-w-2xl mx-auto;
+        }
+        .card {
+            @apply bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 rounded-xl p-6 md:p-8 transition-all duration-300 hover:border-accent-gold hover:shadow-2xl hover:shadow-black/50;
+        }
+        /* Style for the animated graphic container */
+        .graphic-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px; /* Ensure space for the graphic */
+        }
+        /* Style for the AI Strategy section */
+        #ai-strategy-output ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+            list-style-type: disc;
+        }
+        #ai-strategy-output li {
+            @apply mb-2;
+        }
+        #ai-strategy-output h3 {
+            @apply text-lg font-bold text-white mt-4 mb-2;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #d4af37;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-black/60 backdrop-blur-lg fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center">
+                    <!-- NEW LOGO -->
+                    <svg width="150" height="30" viewBox="0 0 150 30" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="23" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="white" letter-spacing="1">LOGI</text>
+                        <text x="68" y="23" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#d4af37" letter-spacing="1">CRATE</text>
+                        <path d="M65 5 L65 25 L82 25" stroke="#d4af37" stroke-width="2" fill="none"/>
+                        <path d="M82 5 L82 15" stroke="#d4af37" stroke-width="2" fill="none"/>
+                    </svg>
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-neutral-300 hover:accent-gold transition-colors duration-300">Services</a>
+                    <a href="#about" class="text-neutral-300 hover:accent-gold transition-colors duration-300">About Us</a>
+                    <a href="#ai-strategy" class="text-neutral-300 hover:accent-gold transition-colors duration-300">AI Strategy</a>
+                    <a href="#contact" class="text-neutral-300 hover:accent-gold transition-colors duration-300">Contact</a>
+                </nav>
+                <a href="#contact" class="hidden md:inline-block bg-accent-gold text-black font-semibold px-5 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-300">Get a Quote</a>
+                <button id="mobile-menu-button" class="md:hidden text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#services" class="block py-2 text-neutral-300">Services</a>
+            <a href="#about" class="block py-2 text-neutral-300">About Us</a>
+            <a href="#ai-strategy" class="block py-2 text-neutral-300">AI Strategy</a>
+            <a href="#contact" class="block py-2 text-neutral-300">Contact</a>
+            <a href="#contact" class="block mt-2 bg-accent-gold text-black text-center font-semibold px-5 py-2 rounded-lg">Get a Quote</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg h-screen flex items-center justify-center pt-20">
+        <div class="text-center px-6">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-4">
+                Engineering the Future of <span class="accent-gold">Supply Chains</span>
+            </h1>
+            <p class="text-lg md:text-xl text-neutral-300 max-w-3xl mx-auto mb-8">
+                Delivering intelligent, resilient, and sustainable SCM solutions to power global enterprise.
+            </p>
+            <a href="#services" class="bg-accent-gold text-black font-bold px-8 py-4 rounded-lg text-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105">Explore Our Solutions</a>
+        </div>
+    </section>
+
+    <!-- Main Content Wrapper -->
+    <main class="container mx-auto px-6 py-24">
+
+        <!-- Services Section -->
+        <section id="services" class="py-20">
+            <h2 class="section-title">Our Core Services</h2>
+            <p class="section-subtitle">We provide end-to-end supply chain management services, tailored to meet the complex demands of modern business.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card"><div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="accent-gold"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div><h3 class="text-xl font-bold text-white mb-3">Predictive Logistics & Freight</h3><p class="text-neutral-400 text-justify">Leveraging AI and real-time data to optimize routes, reduce transit times, and minimize costs across air, sea, and land freight.</p></div>
+                <div class="card"><div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="accent-gold"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div><h3 class="text-xl font-bold text-white mb-3">Automated Warehousing</h3><p class="text-neutral-400 text-justify">State-of-the-art facilities with robotic automation and intelligent inventory management for maximum efficiency and accuracy.</p></div>
+                <div class="card"><div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="accent-gold"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div><h3 class="text-xl font-bold text-white mb-3">Strategic Procurement</h3><p class="text-neutral-400 text-justify">Enhancing your sourcing strategy through global supplier networks, risk management, and cost-reduction negotiations.</p></div>
+                <div class="card"><div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="accent-gold"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg></div><h3 class="text-xl font-bold text-white mb-3">Supply Chain Analytics</h3><p class="text-neutral-400 text-justify">Transforming raw data into actionable insights. We provide dashboards for visibility, performance tracking, and forecasting.</p></div>
+                <div class="card"><div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="accent-gold"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg></div><h3 class="text-xl font-bold text-white mb-3">Compliance & Customs</h3><p class="text-neutral-400 text-justify">Navigating the complexities of international trade with expert customs brokerage and regulatory compliance services.</p></div>
+                <div class="card"><div class="mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="accent-gold"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg></div><h3 class="text-xl font-bold text-white mb-3">Sustainable SCM</h3><p class="text-neutral-400 text-justify">Implementing green logistics and ethical sourcing to help you meet sustainability goals and enhance your brand reputation.</p></div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 w-full graphic-container">
+                    <svg id="animated-graphic" width="100%" height="100%" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="graphic-group"><circle id="circle-1" cx="200" cy="200" r="180" stroke="#d4af37" stroke-width="2" stroke-dasharray="8 8" /><circle id="circle-2" cx="200" cy="200" r="120" stroke="#e5e5e5" stroke-width="1.5" stroke-opacity="0.5" /><circle id="circle-3" cx="200" cy="200" r="60" stroke="#d4af37" stroke-width="2" /><line x1="200" y1="20" x2="200" y2="140" stroke="#e5e5e5" stroke-width="1" stroke-opacity="0.3"/><line x1="380" y1="200" x2="260" y2="200" stroke="#e5e5e5" stroke-width="1" stroke-opacity="0.3"/><line x1="20" y1="200" x2="140" y2="200" stroke="#e5e5e5" stroke-width="1" stroke-opacity="0.3"/><line x1="200" y1="380" x2="200" y2="260" stroke="#e5e5e5" stroke-width="1" stroke-opacity="0.3"/></g></svg>
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-left">The Architects of Modern Supply Chains</h2>
+                    <p class="text-neutral-400 mb-4 text-justify">Founded by a team of logistics veterans and technology innovators, Logicrate was born from a simple observation: the world of supply chain management was ripe for disruption. Traditional methods were no longer sufficient for the speed and complexity of modern commerce.</p>
+                    <p class="text-neutral-400 mb-6 text-justify">We are dedicated to integrating cutting-edge technology with deep industry expertise to create supply chains that are not just efficient, but also intelligent, agile, and resilient. Our mission is to be more than a service provider; we are your strategic partner in growth.</p>
+                    <a href="#contact" class="border-2 border-accent-gold text-accent-gold font-semibold px-6 py-3 rounded-lg hover:bg-accent-gold hover:text-black transition-all duration-300">Partner With Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Strategy Section -->
+        <section id="ai-strategy" class="py-20">
+            <h2 class="section-title">AI-Powered Strategic Insights</h2>
+            <p class="section-subtitle">Describe your biggest supply chain challenge below and let our AI model generate an initial strategic framework for you in seconds.</p>
+            <div class="max-w-3xl mx-auto bg-neutral-900/50 rounded-2xl p-8 border border-neutral-800">
+                <div class="mb-6">
+                    <label for="challenge-input" class="block mb-2 text-sm font-medium text-neutral-300">Your Supply Chain Challenge:</label>
+                    <textarea id="challenge-input" rows="4" class="bg-neutral-800 border border-neutral-700 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-accent-gold transition-all duration-300" placeholder="e.g., 'High last-mile delivery costs in urban areas' or 'Reducing inventory spoilage for perishable goods'"></textarea>
+                </div>
+                <div class="text-center mb-6">
+                    <button id="generate-strategy-btn" class="bg-accent-gold text-black font-bold px-8 py-3 rounded-lg text-lg hover:bg-opacity-90 transition-all duration-300 w-full md:w-auto flex items-center justify-center mx-auto disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span class="mr-2">✨</span> Generate AI Strategy
+                    </button>
+                </div>
+                <div id="ai-strategy-output" class="mt-6 p-6 bg-black/30 border border-neutral-800 rounded-lg min-h-[100px] text-neutral-300 transition-all duration-500">
+                    <p class="text-neutral-500">Your generated strategy will appear here...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-us" class="py-20">
+            <h2 class="section-title">The Logicrate Advantage</h2>
+            <p class="section-subtitle">We build partnerships on a foundation of trust, technology, and tangible results.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                <div class="card p-8"><h3 class="text-xl font-bold text-white mb-3">Technology First</h3><p class="text-neutral-400 text-justify">Our proprietary platform provides unparalleled visibility and control over your entire supply chain ecosystem.</p></div>
+                <div class="card p-8"><h3 class="text-xl font-bold text-white mb-3">Global Network</h3><p class="text-neutral-400 text-justify">With partners in over 100 countries, we offer seamless logistics solutions, no matter where your business takes you.</p></div>
+                <div class="card p-8"><h3 class="text-xl font-bold text-white mb-3">Proven Expertise</h3><p class="text-neutral-400 text-justify">Our team has decades of combined experience in solving the most complex challenges for Fortune 500 companies.</p></div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-neutral-900/50 rounded-2xl">
+            <h2 class="section-title">Let's Build a Smarter Supply Chain</h2>
+            <p class="section-subtitle">Reach out to our experts today for a consultation or fill out the form below to send us a message on WhatsApp.</p>
+            <div class="max-w-2xl mx-auto">
+                <div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <input type="text" id="contact-name" placeholder="Your Name" class="bg-neutral-800 border border-neutral-700 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-accent-gold transition-all duration-300" required>
+                        <input type="email" id="contact-email" placeholder="Your Email" class="bg-neutral-800 border border-neutral-700 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-accent-gold transition-all duration-300">
+                    </div>
+                    <div class="mb-6">
+                         <input type="text" id="contact-company" placeholder="Company Name" class="bg-neutral-800 border border-neutral-700 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-accent-gold transition-all duration-300">
+                    </div>
+                    <div class="mb-6">
+                        <textarea id="contact-message" placeholder="Tell us about your needs..." rows="5" class="bg-neutral-800 border border-neutral-700 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-accent-gold transition-all duration-300" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" id="send-whatsapp-btn" class="bg-accent-gold text-black font-bold px-8 py-3 rounded-lg text-lg hover:bg-opacity-90 transition-all duration-300 w-full md:w-auto">Send Message via WhatsApp</button>
+                    </div>
+                    <div id="form-feedback" class="text-center mt-4"></div>
+                </div>
+                <!-- Contact Info -->
+                <div class="mt-12 pt-8 border-t border-neutral-800 text-center">
+                    <h3 class="text-xl font-bold text-white mb-4">Or Contact Us Directly</h3>
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
+                        <a href="mailto:sanjeevinick09@gmail.com" class="flex items-center gap-2 text-neutral-300 hover:accent-gold transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            sanjeevinick09@gmail.com
+                        </a>
+                        <a href="tel:+919500593997" class="flex items-center gap-2 text-neutral-300 hover:accent-gold transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            +91 9500593997
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black mt-24">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center text-neutral-400">
+                <p class="mb-4">&copy; 2025 Logicrate. All Rights Reserved.</p>
+                <div class="flex justify-center items-center gap-4 md:gap-6">
+                     <a href="mailto:sanjeevinick09@gmail.com" class="hover:accent-gold transition-colors">sanjeevinick09@gmail.com</a>
+                     <span class="text-neutral-600">|</span>
+                     <a href="tel:+919500593997" class="hover:accent-gold transition-colors">+91 9500593997</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile menu toggle script ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+
+        // --- Scroll animation script ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const graphic = document.getElementById('graphic-group');
+            const circle1 = document.getElementById('circle-1');
+            const circle3 = document.getElementById('circle-3');
+            const aboutSection = document.getElementById('about');
+            if (graphic) {
+                graphic.style.transformOrigin = 'center center';
+                circle1.style.transformOrigin = 'center center';
+                circle3.style.transformOrigin = 'center center';
+            }
+            function animateOnScroll() {
+                if (!aboutSection || !graphic) return;
+                const rect = aboutSection.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                if (rect.top < viewportHeight && rect.bottom >= 0) {
+                    const scrollPercent = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
+                    const rotation1 = scrollPercent * 90;
+                    const rotation3 = scrollPercent * -120;
+                    const scale = 0.8 + (scrollPercent * 0.2);
+                    window.requestAnimationFrame(() => {
+                        circle1.style.transform = `rotate(${rotation1}deg)`;
+                        circle3.style.transform = `rotate(${rotation3}deg)`;
+                        graphic.style.transform = `scale(${scale})`;
+                    });
+                }
+            }
+            window.addEventListener('scroll', animateOnScroll);
+        });
+
+        // --- Gemini API Integration ---
+        const generateBtn = document.getElementById('generate-strategy-btn');
+        const challengeInput = document.getElementById('challenge-input');
+        const aiOutputDiv = document.getElementById('ai-strategy-output');
+
+        generateBtn.addEventListener('click', async () => {
+            const userPrompt = challengeInput.value;
+            if (!userPrompt) {
+                aiOutputDiv.innerHTML = '<p class="text-amber-500">Please enter a supply chain challenge first.</p>';
+                return;
+            }
+            generateBtn.disabled = true;
+            aiOutputDiv.innerHTML = '<div class="loader"></div>';
+            const fullPrompt = `As a world-class supply chain consultant from Logicrate, analyze the following challenge and propose a brief, innovative, multi-point strategic solution. The challenge is: "${userPrompt}". Present the solution as a clear, actionable list. Use markdown for formatting, such as headings and bullet points.`;
+            let chatHistory = [{ role: "user", parts: [{ text: fullPrompt }] }];
+            const payload = { contents: chatHistory };
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (!response.ok) { throw new Error(`API request failed with status ${response.status}`); }
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
+                    let text = result.candidates[0].content.parts[0].text;
+                    text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+                    text = text.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+                    text = text.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+                    text = text.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+                    text = text.replace(/^\* (.*$)/gim, '<li>$1</li>');
+                    text = text.replace(/(<\/li>\n<li>)/g, '</li><li>');
+                    text = text.replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>');
+                    text = text.replace(/\n/g, '<br>');
+                    text = text.replace(/<br><ul>/g, '<ul>');
+                    text = text.replace(/<\/ul><br>/g, '</ul>');
+                    aiOutputDiv.innerHTML = text;
+                } else { throw new Error("No valid content received from the API."); }
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                aiOutputDiv.innerHTML = '<p class="text-red-500">Sorry, we encountered an error. Please try again later.</p>';
+            } finally {
+                generateBtn.disabled = false;
+            }
+        });
+
+        // --- WhatsApp Contact Form Integration ---
+        const sendWhatsAppBtn = document.getElementById('send-whatsapp-btn');
+        const formFeedback = document.getElementById('form-feedback');
+
+        sendWhatsAppBtn.addEventListener('click', () => {
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const company = document.getElementById('contact-company').value;
+            const message = document.getElementById('contact-message').value;
+
+            if (!name || !message) {
+                formFeedback.innerHTML = '<p class="text-amber-500">Please fill in your name and message.</p>';
+                return;
+            }
+            
+            formFeedback.innerHTML = '';
+
+            const whatsappNumber = "919500593997"; // India country code + your number
+            
+            let whatsappMessage = `New Inquiry from Logicrate Website:\n\n`;
+            whatsappMessage += `*Name:* ${name}\n`;
+            if(email) whatsappMessage += `*Email:* ${email}\n`;
+            if(company) whatsappMessage += `*Company:* ${company}\n`;
+            whatsappMessage += `*Message:* ${message}`;
+
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+        });
+
+    </script>
+</body>
+</html>
